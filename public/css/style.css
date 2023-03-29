@@ -1,0 +1,51 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap"); */
+
+:root {
+    --text-shadow: 5px 5px 10px rgb(152, 198, 226),
+      -10px 10px 25px rgb(152, 198, 226), -10px -10px 25px rgb(152, 198, 226),
+      10px -10px 25px rgb(152, 198, 226);
+  }
+
+.login-signup {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   
+}
+  
+
+#login-section, #signup-section {
+    width: 90%;
+}
+
+#login-email,
+#login-password,
+#signup-name,
+#signup-email,
+#signup-password {
+    width: 100%;
+}
+
+.post-title{
+    padding: 10px;
+}
+
+/* background */
+/* body {
+    background: url(../images/bg.jpg) no-repeat center center fixed;
+    background-size: cover;
+    text-shadow: var(--text-shadow);
+  } */
+
+/* Change the color and underline when the link is hovered */
+.post-title:hover {
+    text-decoration: underline;
+    color: #16a855;
+}
+
+/* buttons & effect */
+.btn:hover {
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
