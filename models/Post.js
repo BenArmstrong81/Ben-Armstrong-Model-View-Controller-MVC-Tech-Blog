@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require("sequelize");
-const sequelize = require("../config/connection");
+const sequelize = require("../config/connections");
 
 // create post title, contents, post creator’s username & timestamp
 class Post extends Model {}

@@ -1,0 +1,51 @@
+const path = require("path");
+const express = require("express");
+const session = require("express-session");
+const exphbs = require("express-handlebars");
+const routes = require("./controllers");
+const sequelize = require("./config/connections");
+const SequelizeStore = require("connect-session-sequelize")(session.Store);
+const helpers = require("./utils/helpers");
+require("dotenv").config();
+// const { strict } = require("assert");   //Ben to look into
+
+const app = express();
+const PORT = process.env.PORT || 3001;
+
+const sess = {
+  secret: "Super secret secret",
+  // when user idle for a while will be prompted to log in again
+  cookie: {
+    // milliseconds⤵️10mintues
+    maxAge: 300000,
+    httpOnly: true,
+    secure: false,
+    sameSite: "strict",
+  },
+  resave: false,
+  saveUninitialized: true,
+  store: new SequelizeStore({
+    db: sequelize,
+  }),
+};
+
+app.use(session(sess));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, "public")));
+app.use(routes);
+const hbs = exphbs.create({
+  helpers
+});
+
+app.engine("handlebars", hbs.engine);
+app.set("view engine", "handlebars");
+
+sequelize.sync({ force: false }).then(() => {
+  app.listen(PORT, () => console.log(`Now listening on Port; ${PORT}`));
+});
+
+app.use((err, req, res) => {
+  console.error(err.stack);
+  res.status(500).send("Something Went Wrong!");
+});

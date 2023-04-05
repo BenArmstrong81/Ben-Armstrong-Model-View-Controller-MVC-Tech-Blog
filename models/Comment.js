@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require("sequelize");
-const sequelize = require("../config/connection");
+const sequelize = require("../config/connections");
 
 // comments display under each post, with username & timestamp
 class Comment extends Model {}
