@@ -1,47 +1,34 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <h2 class="mt-4 mb-4">Dashboard</h2>
-      <a href="/dashboard/newPost" class="btn btn-primary mb-4">New Post</a>
-      {{#each posts as |post|}}
-        <div class="card my-4">
-          <div class="card-header">
-            <div class="row">
-              <div class="col-md-6">
-                <a
-                  href="/post/{{post.id}}"
-                  target="_blank"
-                  class="post-title text-decoration-none fw-bold"
-                >{{title}}</a>
-              </div>
-              <div class="col-md-6 text-md-end">
-                <p><small>Posted by
-                    {{user.name}}
-                    on
-                    {{format_date createdAt}}</small></p>
-              </div>
-            </div>
-          </div>
-          <div class="card-body">
-            <p>{{content}}</p>
-          </div>
-          <div class="card-footer">
-            <div class="row">
-              <div class="col-md-6">
-                <a href="/post/{{post.id}}" class="card-footer-item">
-                  {{comments.length}}
-                  {{format_plural "comment" comments.length}}</a>
-              </div>
+{{!-- display a specific post with comment edit button, delete button & leave a comment button --}}
+<h3>{{username}}'s Posts</h3>
 
-              <div class="col-md-6">
-                <a href="/dashboard/edit/{{post.id}}" class="edit-link">Edit a Post</a>
-              </div>
-            </div>
-          </div>
+<div>
+    {{#each posts as |post|}}
+    <div class="position-relative">
+        {{ post-card post}}
+        <div class="position-absolute top-0 end-0">
+            <a href="/editpost/{{id}}">
+                <button type="button" class="btn btn-primary" id="edit-post-btn">
+                    Edit
+                </button>
+            </a>
+
+            <button type="button" class="btn btn-primary delete-post-btn" {{!-- id="delete-post-btn" --}}
+                data-id="{{id}}">
+                Delete
+            </button>
         </div>
-      {{else}}
-        <p>No Posts Currently Available</p>
-      {{/each}}
     </div>
-  </div>
+    {{/each}}
 </div>
+
+<div class="row">
+    <div class="col">
+        <a href="/newpost">
+            <button type="button" class="btn btn-primary">
+                Create a New Post
+            </button>
+        </a>
+    </div>
+</div>
+
+<script src="/js/deleteButton.js"></script>

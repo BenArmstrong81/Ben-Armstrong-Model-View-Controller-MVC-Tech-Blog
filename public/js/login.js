@@ -1,53 +1,35 @@
-const loginFormHandler = async (event) => {
+const sendLoginRequest = async (event) => {
   event.preventDefault();
 
   // Collect values from the login form
-  const email = document.querySelector("#email-login").value.trim();
-  const password = document.querySelector("#password-login").value.trim();
+  const email = document.getElementById("email-field").value.trim();
+  const password = document.getElementById("password-field").value.trim();
 
   if (email && password) {
-    // Send a POST request to the API endpoint
-    const response = await fetch("/api/users/login", {
-      method: "POST",
-      body: JSON.stringify({ email, password }),
-      headers: { "Content-Type": "application/json" },
-    });
+    try {
+      const response = await fetch("/api/user/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      });
 
-    if (response.ok) {
-      // If successful, redirect the browser to the profile page
-      document.location.replace("/profile");
-    } else {
-      alert(response.statusText);
-    }
-  }
-};
-
-const signupFormHandler = async (event) => {
-  event.preventDefault();
-
-  const name = document.querySelector("#name-signup").value.trim();
-  const email = document.querySelector("#email-signup").value.trim();
-  const password = document.querySelector("#password-signup").value.trim();
-
-  if (name && email && password) {
-    const response = await fetch("/api/users", {
-      method: "POST",
-      body: JSON.stringify({ name, email, password }),
-      headers: { "Content-Type": "application/json" },
-    });
-
-    if (response.ok) {
-      document.location.replace("/profile");
-    } else {
-      alert(response.statusText);
+      if (response.ok) {
+        document.location.replace("/dashboard");
+      } else {
+        alert(response.statusText);
+      }
+    } catch (error) {
+      console.log(error);
+      alert("An error occurred while sending login request. Please try again later.");
     }
   }
 };
 
 document
-  .querySelector(".login-form")
-  .addEventListener("submit", loginFormHandler);
-
-document
-  .querySelector(".signup-form")
-  .addEventListener("submit", signupFormHandler);
+  .getElementById("login-form")
+  .addEventListener("submit", sendLoginRequest);

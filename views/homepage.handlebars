@@ -4,16 +4,17 @@
 </div>
 
 <div>
-    {{#each posts as |post|}}
-    <div class="position-relative">
-        {{> post-card}}
-        <div class="position-absolute bottom-0 start-50">
-            <p style="text-shadow: none;" class="text-muted fs-6">Posted By {{post.user.username}}</p>
+    {{#if posts.[1]}}
+        {{#each posts as |post|}}
+        <div class="position-relative">
+            {{ post-card }}
+            <div class="position-absolute bottom-0 start-50">
+                <p style="text-shadow: none;" class="text-muted fs-6">Posted By {{post.user.username}}</p>
+            </div>
         </div>
-    </div>
-    {{/each}}
+        {{/each}}
 
     {{else}}
-    <p>No Posts Currently Available</p>
-    {{/each}}
+        <p>No Posts Currently Available</p>
+    {{/if}}
 </div>

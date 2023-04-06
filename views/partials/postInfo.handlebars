@@ -1,30 +1,24 @@
-<div class="card mb-4">
-  <div class="card-header">
-    <div class="row">
-      <div class="col-md-6">
-        <a
-          href="/post/{{id}}"
-          target="_blank"
-          class="post-title text-decoration-none fw-bold"
-        >{{title}}</a>
-      </div>
-
-      <div class="col-md-6 text-md-end">
-        <p><small>Posted by
-            {{user.name}}
-            on
-            {{format_date createdAt}}</small></p>
-      </div>
+<div class="post-card card mt-4">
+    <div class="card-header">
+        <a href="/post/{{id}}" class="text-white">
+            <h4>{{title}}</h4>
+        </a>
     </div>
-  </div>
 
-  <div class="card-body">
-    <p>{{content}}</p>
-  </div>
+    <div class="text-content card-body">
+        <p class="text-dark-emphasis fs-5">
+            {{contents}}
+        </p>
 
-  <div class="card-footer">
-    <a href="/post/{{id}}" class="card-footer-item">
-      {{comments.length}}
-      {{format_plural "comment" comments.length}}</a>
-  </div>
+    </div>
+
+    <div class="text-content card-footer">
+        <p class="text-muted fs-6">
+            Posted on
+            {{format_date createdAt}}
+            {{!-- By
+            {{user.username}} --}}
+        </p>
+    </div>
+
 </div>

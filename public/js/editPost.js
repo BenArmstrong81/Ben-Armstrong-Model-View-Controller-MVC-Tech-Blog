@@ -1,28 +1,32 @@
-async function editPostHandler(event) {
-  event.preventDefault();
+const postId = document
+  .getElementById("edit-post-form")
+  .getAttribute("data-id");
+  // console.log(postId);
+const editPostFormHandler = async (e) => {
+  e.preventDefault();
+  // get the data-id from edit button
+  const updateTitle = document.getElementById("edit-post-title").value;
+  const updateContent = document.getElementById("edit-post-content").value;
 
-  const title = document.querySelector("#title").value.trim();
-  const content = document.querySelector("#body").value.trim();
-  const id = document.querySelector("#post-id").value;
-
-  if (title && body) {
-    const response = await fetch(`/api/posts/${id}`, {
+  if (updateTitle && updateContent) {
+    const response = await fetch(`/api/post/update/${postId}`, {
       method: "PUT",
       body: JSON.stringify({
-        title,
-        content,
+        title: updateTitle,
+        contents: updateContent,
       }),
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
-
     if (response.ok) {
+      window.alert("Post has been updated!"),
       document.location.replace("/dashboard");
     } else {
       alert(response.statusText);
     }
   }
-}
-
+};
 document
-  .querySelector("#edit-post-form")
-  .addEventListener("submit", editPostHandler);
+  .getElementById("edit-post-form")
+  .addEventListener("submit", editPostFormHandler);
