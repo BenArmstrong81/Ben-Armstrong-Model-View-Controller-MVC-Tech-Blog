@@ -36,7 +36,7 @@ Post.init(
   },
   {
     sequelize,
-    timestamps: true, // Enable timestamps to use build-in Sequelize methods to show date_created
+    timestamps: true, // This enable timestamps to use build-in Sequelize methods to show the date create
     freezeTableName: true,
     underscored: true,
     modelName: "post",

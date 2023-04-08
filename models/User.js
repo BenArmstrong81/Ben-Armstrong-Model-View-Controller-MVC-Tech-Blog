@@ -1,14 +1,15 @@
+//-------------All required packages:
 const { Model, DataTypes } = require("sequelize");
 const bcrypt = require("bcrypt");
 const sequelize = require("../config/connections");
 
-// create User model
+//---------------Creates a class called User:
 class User extends Model {
   checkPassword(loginPw) {
     return bcrypt.compareSync(loginPw, this.password);
   }
 }
-
+//---------------Defines the parameters to be captured for the table
 User.init(
   {
     id: {
@@ -33,7 +34,10 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [8],
+        len: {
+          args: [8, 20],
+          msg: "Password must be between 8 and 20 characters long",
+        },
       },
     },
   },

@@ -1,26 +1,79 @@
-<div class="login-page">
-    <h2 class="page-title">Login</h2>
-    <form class="form" id="login-form">
-        <div class="form-group">
-            <label for="email-login">Email:</label>
-            <input type="text" placeholder="email" id="email-field">
-        </div>
-        <div class="form-group">
-            <label for="password-login">Password:</label>
-            <input type="password" placeholder="password" id="password-field">
-        </div>
-        <div class="form-group">
-            <button class="btn btn-primary" type="submit">Login</button>
-        </div>
-    </form>
-    <div>
-        <p>No account yet?
-            <a href="/signup"><button type="button" class="btn btn-secondary">Signup</button></a>
-            instead
-        </p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 login-signup" id="left-section">
+      <div id="login-section">
+        <!-- Login form here -->
+        <form id="login-form" class="my-3">
+          <div class="form-group">
+            <label for="login-email">Email address</label>
+            <input
+              type="email"
+              class="form-control"
+              id="login-email"
+              placeholder="Email"
+            />
+          </div>
+          <div class="form-group">
+            <label for="login-password">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              id="login-password"
+              placeholder="Password"
+            />
+          </div>
+          <button type="submit" class="btn btn-primary my-3">Login</button>
+        </form>
+        <button type="button" class="btn btn-secondary" id="show-signup">Don't
+          have an account? Sign up Now</button>
+      </div>
+      <div id="signup-section" class="d-none">
+        <!-- Signup form here -->
+        <form id="signup-form">
+          <div class="form-group">
+            <label for="signup-name">Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="signup-name"
+              placeholder="Name"
+            />
+          </div>
+          <div class="form-group">
+            <label for="signup-email">Email address</label>
+            <input
+              type="email"
+              class="form-control"
+              id="signup-email"
+              placeholder="Email"
+            />
+          </div>
+          <div class="form-group">
+            <label for="signup-password">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              id="signup-password"
+              placeholder="Password"
+            />
+          </div>
+          <button type="submit" class="btn btn-primary my-3">Sign Up</button>
+        </form>
+        <button type="button" class="btn btn-secondary" id="show-login">Have an
+          account? Log in Now</button>
+      </div>
     </div>
+    <div class="col-md-6" id="right-section">
+      <div id="welcome-image-section" class="mx-3 my-3">
+        <img src="images/welcome-image.png" alt="Welcome" class="img-fluid" />
+          {{!-- **BEN to edit image** --}}
+      </div>
+    </div>
+  </div>
 </div>
 
-
-
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script
+  src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+></script>
 <script src="/js/login.js"></script>

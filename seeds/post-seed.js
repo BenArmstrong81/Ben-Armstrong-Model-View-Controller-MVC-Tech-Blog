@@ -1,3 +1,5 @@
+const { Post } = require("../models");
+
 const postData = [
   {
     title: "My first post",
@@ -6,4 +8,6 @@ const postData = [
   },
 ];
 
-module.exports = postData;
+const seedPosts = () => Post.bulkCreate(postData);
+
+module.exports = seedPosts;
