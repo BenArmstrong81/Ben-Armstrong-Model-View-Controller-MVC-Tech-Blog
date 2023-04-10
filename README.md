@@ -93,5 +93,41 @@ You are required to submit BOTH of the following for review:
 
 * The URL of the GitHub repository, with a unique name and a readme describing the project.
 
----
-© 2022 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+# Installation
+N/A - Depolyed onto live Website using Heroku.
+
+# Usage
+You can use and view this application via the following: https://obscure-springs-99070.herokuapp.com/
+<br/>Or check out my repository here: https://github.com/BenArmstrong81/Ben-Armstrong-Model-View-Controller-MVC-Tech-Blog
+
+The following image's shows the deployed application:
+
+![First LogIn/Sign Up screen.](./assets/MetroMadness_Screen1.png)
+![Second screen with layout.](./assets/MetroMadness_Screen2.png)
+![Second screen showing working application.](./assets/MetroMadness_Screen2_ShowingWork.png)
+
+# Credits
+* Ben Armstrong https://github.com/BenArmstrong81 <br>
+
+*With special thanks to The University of Adelaide Full Stack Web Development Class.*
+
+## What I Learned
+Building on the first third of the course, the past 6 weeks we have learnt the following; Node.js, Object-Oriented Programming (OOP), Express.js, SQL, Object-Relational Mapping (ORM), Heruku, Model View Controller (MVC) and much much more!!
+
+Using the above skills I created this whole project from scratch including; HTML (using Handlebars,js), CSS, JavaScript, Node.js, Exress.js, SQL, GitHub, Heroku, Boostrap and README files. 
+  
+I feel rather proud, after only 13 weeks of coding and to be able to complete such a task is greatfully satisfying.
+
+## Made With
+
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+![MySQL](https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white)
+![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
+![Sequelize](https://img.shields.io/badge/Sequelize-52B0E7?style=for-the-badge&logo=Sequelize&logoColor=white)
+![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)
+
+# License
+
+Please refer to the LICENSE in the repo.
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
