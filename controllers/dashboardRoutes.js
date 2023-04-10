@@ -1,8 +1,9 @@
+//-------------Required Paths and Packages:
 const router = require("express").Router();
 const { Post, User, Comment } = require("../models");
 const withAuth = require("../utils/auth");
 
-// Get all posts for dashboard
+//-------------Get All Posts for Dashboard:
 router.get("/", withAuth, async (req, res) => {
   try {
     const postData = await Post.findAll({
@@ -11,7 +12,6 @@ router.get("/", withAuth, async (req, res) => {
       },
       include: [{ model: User, attributes: ["name"] }, { model: Comment }],
     });
-
     const posts = postData.map((post) => post.get({ plain: true }));
     console.log("rendering dashboard");
     res.render("dashboard", {
@@ -24,14 +24,14 @@ router.get("/", withAuth, async (req, res) => {
   }
 });
 
-// New post route
+//-------------New Post Route:
 router.get("/newPost", withAuth, (req, res) => {
   res.render("newPost", {
     logged_in: req.session.logged_in,
   });
 });
 
-// edit post by id
+//-------------Edit Post by ID:
 router.get("/edit/:id", withAuth, async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id, {
@@ -51,14 +51,12 @@ router.get("/edit/:id", withAuth, async (req, res) => {
         },
       ],
     });
-
     if (!postData) {
       res.status(404).json({ message: "No post found with this id" });
       return;
     }
 
     const post = postData.get({ plain: true });
-
     res.render("editPost", {
       post,
       logged_in: req.session.logged_in,
@@ -68,4 +66,5 @@ router.get("/edit/:id", withAuth, async (req, res) => {
   }
 });
 
+//-------------Exporting dashboardRoutes file:
 module.exports = router;

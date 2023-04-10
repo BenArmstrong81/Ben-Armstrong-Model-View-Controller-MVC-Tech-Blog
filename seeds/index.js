@@ -1,12 +1,15 @@
+//-------------Required Path's:
 const seedUsers = require("./user-seeds");
 const seedPosts = require("./post-seeds");
 const seedComments = require("./comment-seeds");
-
 const sequelize = require("../config/connection");
 
+//-------------Function to seed all 'seed'file's:
 const seedAll = async () => {
+
   await sequelize.sync({ force: true });
   console.log("\n----- DATABASE SYNCED -----\n");
+
   await seedUsers();
   console.log("\n----- USERS SEEDED -----\n");
 
@@ -18,5 +21,5 @@ const seedAll = async () => {
 
   process.exit(0);
 };
-
+//-------------Exporting all seed's:
 seedAll();

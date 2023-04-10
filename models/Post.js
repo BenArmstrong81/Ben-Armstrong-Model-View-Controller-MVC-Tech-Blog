@@ -1,9 +1,10 @@
+//-------------Required Paths and Packages:
 const { Model, DataTypes } = require("sequelize");
-const sequelize = require("../config/connections");
+const sequelize = require("../config/connection");
 
-// create post title, contents, post creator’s username & timestamp
+//---------------Creates a class called Post:
 class Post extends Model {}
-
+//---------------Defines the Parameters to be Captured for the Table:
 Post.init(
   {
     id: {
@@ -36,11 +37,11 @@ Post.init(
   },
   {
     sequelize,
-    timestamps: true, // This enable timestamps to use build-in Sequelize methods to show the date create
+    timestamps: true, // Enable timestamps to use build-in Sequelize methods to show date_created
     freezeTableName: true,
     underscored: true,
     modelName: "post",
   }
 );
-
+//-------------Exporting Post's
 module.exports = Post;

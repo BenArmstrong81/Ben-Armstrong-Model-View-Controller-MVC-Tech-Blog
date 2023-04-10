@@ -1,15 +1,73 @@
 <div class="container mt-5">
-    {{> post-info }}
+    {{!-- {{> post-info }} --}}
+
+
+    {{!-- Partial codes --}}
+    <div class="card mb-4">
+      <div class="card-header">
+        <div class="row">
+          <div class="col-md-6">
+            <a
+              href="/post/{{id}}"
+              target="_blank"
+              class="post-title text-decoration-none fw-bold"
+            >{{title}}</a>
+          </div>
+          <div class="col-md-6 text-md-end">
+            <p><small>Posted by
+                {{user.name}}
+                on
+                {{format_date createdAt}}</small></p>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <p>{{content}}</p>
+      </div>
+      <div class="card-footer">
+        <a href="/post/{{id}}" class="card-footer-item">
+          {{comments.length}}
+          {{format_plural "comment" comments.length}}</a>
+      </div>
+    </div>
+{{!--  --}}
+    
     <div class="container">
         <h2>Comments</h2>
-
         <ul class="list-group">
             {{#each comments as |comment|}}
-                {{> comment}}
+                {{!-- {{> comment}} --}}
+
+
+{{!-- Partial Codes --}}
+            <li class="list-group-item bg-secondary text-white my-3">
+              <div class="column">
+                <div class="col">
+                  {{comment_text}}
+                </div>
+                <div class="col text-md-end text-warning">
+                  <p><small>--- Written by
+                      {{user.name}}
+                      on
+                      {{format_date createdAt}}</small></p>
+                </div>
+              </div>
+              <button
+                data-comment-id="{{id}}"
+                class="btn btn-danger btn-sm delete-comment">Delete</button>
+              <button
+                type="button"
+                class="btn btn-sm btn-warning edit-comment"
+                data-bs-toggle="modal"
+                data-bs-target="#edit-comment-modal"
+                data-comment-id="{{id}}"
+              >Edit</button>
+
+            </li>
+{{!--  --}}
             {{/each}}
         </ul>
     </div>
-
     <button class="btn btn-primary my-3" type="button" data-bs-toggle="collapse"
         data-bs-target="#add-comment-form" aria-expanded="false"
         aria-controls="add-comment-form">
@@ -50,8 +108,6 @@
   </div>
 </div>
 
-
-
-<script src="/js/deleteComment.js"></script>
-{{!-- <script src="/js/edit-comment.js"></script>   //BEN TO LOOK INTO --}}
-<script src="/js/newComment.js"></script>
+<script src="/js/delete-comment.js"></script>
+<script src="/js/edit-comment.js"></script>
+<script src="/js/add-comment.js"></script>

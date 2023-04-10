@@ -38,6 +38,14 @@ nav{
     padding: 10px;
 }
 
+.small, small {
+  color: whitesmoke;
+}
+
+.bg-secondary, .list-group-item {
+  background-color: var(--altruism-blue)
+}
+
 /* background */
 /* body {
     background: url(../images/bg.jpg) no-repeat center center fixed;
@@ -117,6 +125,12 @@ nav{
     -webkit-transition: box-shadow 0.2s ease-in;
     -moz-transition: box-shadow 0.2s ease-in;
     transition: box-shadow 0.2s ease-in;
+  }
+
+  .btn-warning {
+    background-color: white;
+    border-color: white;
+    color: black;
   }
 
 #footer {

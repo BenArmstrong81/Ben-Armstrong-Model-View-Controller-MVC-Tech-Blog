@@ -1,10 +1,9 @@
+//-------------Editing a Post:
 async function editPostHandler(event) {
   event.preventDefault();
-
   const title = document.querySelector("#title").value.trim();
   const content = document.querySelector("#body").value.trim();
   const id = document.querySelector("#post-id").value;
-
   if (title && body) {
     const response = await fetch(`/api/posts/${id}`, {
       method: "PUT",
@@ -14,7 +13,6 @@ async function editPostHandler(event) {
       }),
       headers: { "Content-Type": "application/json" },
     });
-
     if (response.ok) {
       document.location.replace("/dashboard");
     } else {
@@ -22,7 +20,7 @@ async function editPostHandler(event) {
     }
   }
 }
-
+//-------------Event Listener for Post Handler:
 document
   .querySelector("#edit-post-form")
   .addEventListener("submit", editPostHandler);

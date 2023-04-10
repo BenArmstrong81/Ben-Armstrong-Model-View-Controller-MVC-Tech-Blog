@@ -1,22 +1,25 @@
+//-------------All required packages:
 const path = require("path");
 const express = require("express");
 const session = require("express-session");
 const exphbs = require("express-handlebars");
 const routes = require("./controllers");
-const sequelize = require("./config/connections");
+const sequelize = require("./config/connection");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
-const helpers = require("./utils/helpers");
 require("dotenv").config();
-// const { strict } = require("assert");   //Ben to look into
-
+const helpers = require("./utils/helpers");
 const app = express();
+
+//-------------Port required for the application to run:
 const PORT = process.env.PORT || 3001;
 
+//-------------Set up Handlebars.js engine with custom helper
+const hbs = exphbs.create({ helpers });
+
+//-------------Using sequelized to hide and store personal information such as password:
 const sess = {
   secret: "Super secret secret",
-  // when user idle for a while will be prompted to log in again
   cookie: {
-    // milliseconds⤵️10mintues
     maxAge: 300000,
     httpOnly: true,
     secure: false,
@@ -29,23 +32,22 @@ const sess = {
   }),
 };
 
+//-------------Initialising application:
 app.use(session(sess));
+app.engine("handlebars", hbs.engine);
+app.set("view engine", "handlebars");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(routes);
-const hbs = exphbs.create({
-  helpers
-});
 
-app.engine("handlebars", hbs.engine);
-app.set("view engine", "handlebars");
-
+//-------------Application to run on port:
 sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => console.log(`Now listening on Port; ${PORT}`));
+  app.listen(PORT, () => console.log("Now listening"));
 });
 
+//-------------Debugging
 app.use((err, req, res) => {
   console.error(err.stack);
-  res.status(500).send("Something Went Wrong!");
+  res.status(500).send("Something went wrong!");
 });

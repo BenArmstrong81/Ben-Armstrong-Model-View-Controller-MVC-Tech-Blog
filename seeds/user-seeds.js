@@ -1,5 +1,6 @@
+//-------------Required Path:
 const { User } = require("../models");
-
+//-------------Constructing User's:
 const userData = [
   {
     name: "Sir Richard Branson",
@@ -20,9 +21,9 @@ const userData = [
     name: "Tony Robbins",
     email: "anthonyrobbins@example.com",
     password: "password4",
-  },
+  }
 ];
 
-const seedUsers = () => User.bulkCreate(userData, { individualHooks: true });
-
+const seedUsers = async () => User.bulkCreate(userData, { individualHooks: true});
+//-------------Exporting User's:
 module.exports = seedUsers;

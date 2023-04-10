@@ -1,10 +1,8 @@
-// Login form handler function
+//-------------Function for the Login Form Handler:
 async function loginFormHandler(event) {
   event.preventDefault();
-
   const email = document.querySelector("#login-email").value.trim();
   const password = document.querySelector("#login-password").value.trim();
-
   if (email && password) {
     const response = await fetch("/api/users/login", {
       method: "post",
@@ -14,7 +12,6 @@ async function loginFormHandler(event) {
       }),
       headers: { "Content-Type": "application/json" },
     });
-
     if (response.ok) {
       document.location.replace("/dashboard");
     } else {
@@ -23,14 +20,12 @@ async function loginFormHandler(event) {
   }
 }
 
-// Signup form handler function
+//-------------Funstion for the Signup Form Handler:
 async function signupFormHandler(event) {
   event.preventDefault();
-
   const name = document.querySelector("#signup-name").value.trim();
   const email = document.querySelector("#signup-email").value.trim();
   const password = document.querySelector("#signup-password").value.trim();
-
   if (name && email && password) {
     const response = await fetch("/api/users", {
       method: "post",
@@ -41,7 +36,6 @@ async function signupFormHandler(event) {
       }),
       headers: { "Content-Type": "application/json" },
     });
-
     if (response.ok) {
       console.log("success");
       document.location.replace("/dashboard");
@@ -59,7 +53,6 @@ $(document).ready(function () {
     $("#left-section").addClass("order-md-2");
     $("#right-section").addClass("order-md-1");
   });
-
   $("#show-login").on("click", function () {
     $("#signup-section").addClass("d-none");
     $("#login-section").fadeIn(300).removeClass("d-none");
@@ -68,12 +61,12 @@ $(document).ready(function () {
   });
 });
 
-// Event listener for login form
+//-------------Event Listener for Login Form:
 document
   .querySelector("#login-form")
   .addEventListener("submit", loginFormHandler);
 
-// Event listener for signup form
+//-------------Event Listener for Signup Form:
 document
   .querySelector("#signup-form")
   .addEventListener("submit", signupFormHandler);

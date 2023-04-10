@@ -1,9 +1,10 @@
+//-------------Required Paths and Packages:
 const router = require("express").Router();
 const { User, Comment } = require("../../models");
 const withAuth = require("../../utils/auth");
 
-// API routes for comments
-// Get all comments
+//--------------------------API Routes for Comments:
+//-------------Get All Comments
 router.get("/", async (req, res) => {
   try {
     const commentData = await Comment.findAll();
@@ -13,25 +14,23 @@ router.get("/", async (req, res) => {
   }
 });
 
-// Get a single comment by id
+//-------------Get a Single Comment by ID
 router.get("/:id", async (req, res) => {
   try {
     const commentData = await Comment.findByPk(req.params.id, {
       include: [{ model: User, attributes: ["name"] }],
     });
-
     if (!commentData) {
-      res.status(404).json({ message: "Sorry, no comment found with this id? Please try again" });
+      res.status(404).json({ message: "No comment found with that id!" });
       return;
     }
-
     res.status(200).json(commentData);
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-// Create a new comment (with authentication)
+// Create a New Comment (with Authentication)
 router.post("/", withAuth, async (req, res) => {
   try {
     const newComment = await Comment.create({
@@ -45,7 +44,7 @@ router.post("/", withAuth, async (req, res) => {
   }
 });
 
-// Delete a comment by id (with authentication)
+// Delete a Comment by ID (with Authentication)
 router.delete("/:id", withAuth, async (req, res) => {
   try {
     console.log("Deleting comment with id:", req.params.id);
@@ -56,35 +55,30 @@ router.delete("/:id", withAuth, async (req, res) => {
         user_id: req.session.user_id,
       },
     });
-
     if (!commentData) {
-      res.status(404).json({ message: "Sorry, no comment found with this id? Please try again" });
+      res.status(404).json({ message: "No comment found with that id!" });
       return;
     }
-
     res.status(200).json(commentData);
   } catch (err) {
     res.status(500).json(err);
   }
 });
-
 router.put("/:id", withAuth, async (req, res) => {
   try {
     const commentId = req.params.id;
     const updatedCommentBody = req.body.comment_text;
-
     const comment = await Comment.findOne({ where: { id: commentId } });
-
     if (comment && comment.user_id === req.session.user_id) {
       comment.comment_text = updatedCommentBody;
       await comment.save();
-      res.status(200).json({ message: "Sucess! Comment updated" });
+      res.status(200).json({ message: "Comment updated" });
     } else if (!comment) {
-      res.status(404).json({ message: "Sorry! Comment not found" });
+      res.status(404).json({ message: "Comment not found" });
     } else {
       res
         .status(403)
-        .json({ message: "Forbidden: You may only edit your own comments" });
+        .json({ message: "Forbidden: You can only edit your own comments" });
     }
   } catch (error) {
     console.error(error);
@@ -92,4 +86,5 @@ router.put("/:id", withAuth, async (req, res) => {
   }
 });
 
+//-------------Exporting commentRoutes file:
 module.exports = router;

@@ -1,9 +1,10 @@
+//-------------Required Paths and Packages:
 const { Model, DataTypes } = require("sequelize");
-const sequelize = require("../config/connections");
+const sequelize = require("../config/connection");
 
-// comments display under each post, with username & timestamp
+//-------------Create Comment Model:
 class Comment extends Model {}
-
+//---------------Defines the Parameters to be Captured for the Table:
 Comment.init(
   {
     id: {
@@ -36,11 +37,11 @@ Comment.init(
   },
   {
     sequelize,
-    timestamps: true, // This enable timestamps to use build-in Sequelize methods to show the date created
+    timestamps: true, // Enable timestamps to use build-in Sequelize methods to show date_created
     freezeTableName: true,
     underscored: true,
     modelName: "comment",
   }
 );
-
+//-------------Exporting Comment's:
 module.exports = Comment;

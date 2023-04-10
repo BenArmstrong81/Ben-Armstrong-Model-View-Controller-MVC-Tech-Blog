@@ -1,8 +1,9 @@
+//-------------Required Paths and Packages:
 const router = require("express").Router();
 const { Post, User, Comment } = require("../models");
 const withAuth = require("../utils/auth");
 
-// Get all blog posts and display them on the homepage
+//-------------Get all Blog Posts and Displays Them on the Homepage:
 router.get("/", async (req, res) => {
   try {
     const postData = await Post.findAll({
@@ -10,7 +11,7 @@ router.get("/", async (req, res) => {
     });
 
     const posts = postData.map((post) => post.get({ plain: true }));
-
+    console.log(posts);
     res.render("home", {
       posts,
       logged_in: req.session.logged_in,
@@ -20,7 +21,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-//get a blog post by id
+//-------------Gets a Blog Post by the ID:
 router.get("/post/:id", async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id, {
@@ -40,14 +41,12 @@ router.get("/post/:id", async (req, res) => {
         },
       ],
     });
-
     if (!postData) {
       res.status(404).json({ message: "No post found with this id" });
       return;
     }
 
     const post = postData.get({ plain: true });
-
     res.render("singlePost", {
       ...post,
       logged_in: req.session.logged_in,
@@ -57,10 +56,10 @@ router.get("/post/:id", async (req, res) => {
   }
 });
 
-// Use withAuth middleware to prevent access to route
+//-------------Use withAuth Middleware to Prevent Access to Route:
 router.get("/profile", withAuth, async (req, res) => {
   try {
-    // Find the logged in user based on the session ID
+    //-------------Find the Logged in User Based on the Session ID
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ["password"] },
       include: [{ model: Post }],
@@ -75,15 +74,15 @@ router.get("/profile", withAuth, async (req, res) => {
   }
 });
 
-// Render the login/signup page
+//-------------Render the Login/Signup Page:
 router.get("/login", (req, res) => {
-  // If the user is already logged in, redirect the request to another route
+  //-------------If the User is Already Logged In, Redirect the Request to Another Route:
   if (req.session.logged_in) {
     res.redirect("/");
     return;
   }
-
   res.render("login");
 });
 
+//-------------Exporting homeRouter file:
 module.exports = router;

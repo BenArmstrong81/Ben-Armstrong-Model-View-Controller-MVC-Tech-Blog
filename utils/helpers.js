@@ -1,3 +1,4 @@
+//-------------Required Packages:
 const Handlebars = require("handlebars");
 
 module.exports = {
@@ -5,11 +6,10 @@ module.exports = {
     if (!date) {
       return "";
     }
-    // Format date as MM/DD/YYYY
+    //-------------Format Date as MM/DD/YYYY
     return date.toLocaleString("en-AU");
   },
-
-  // format plural words
+  //-------------Format Plural Words:
   format_plural: (word, amount) => {
     if (amount !== 1) {
       return `${word}s`;

@@ -1,7 +1,7 @@
-//-------------All required packages:
+//---------------All required packages:
 const { Model, DataTypes } = require("sequelize");
 const bcrypt = require("bcrypt");
-const sequelize = require("../config/connections");
+const sequelize = require("../config/connection");
 
 //---------------Creates a class called User:
 class User extends Model {
@@ -9,7 +9,7 @@ class User extends Model {
     return bcrypt.compareSync(loginPw, this.password);
   }
 }
-//---------------Defines the parameters to be captured for the table
+//---------------Defines the Parameters to be Captured for the Table:
 User.init(
   {
     id: {
@@ -35,6 +35,7 @@ User.init(
       allowNull: false,
       validate: {
         len: {
+          //-------------Password Strength Arguments:
           args: [8, 20],
           msg: "Password must be between 8 and 20 characters long",
         },
@@ -43,12 +44,12 @@ User.init(
   },
   {
     hooks: {
-      //set up beforeCreate user hooks
+      //-------------Set up beforeCreate User Hooks:
       beforeCreate: async (newUserData) => {
         newUserData.password = await bcrypt.hash(newUserData.password, 10);
         return newUserData;
       },
-      //set up beforeUpdate user hooks
+      //-------------Set up beforeUpdate User Hooks:
       beforeUpdate: async (updatedUserData) => {
         updatedUserData.password = await bcrypt.hash(
           updatedUserData.password,
@@ -64,5 +65,5 @@ User.init(
     modelName: "user",
   }
 );
-
+//-------------Exporting User's:
 module.exports = User;

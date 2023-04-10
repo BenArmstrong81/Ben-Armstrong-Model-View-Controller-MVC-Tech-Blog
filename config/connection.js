@@ -1,3 +1,4 @@
+//-------------Required Paths and Packages:
 const Sequelize = require("sequelize");
 require("dotenv").config();
 

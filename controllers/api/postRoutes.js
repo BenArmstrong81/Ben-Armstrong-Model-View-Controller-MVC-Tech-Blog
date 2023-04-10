@@ -1,9 +1,10 @@
+//-------------Required Paths and Packages:
 const router = require("express").Router();
 const { User, Post } = require("../../models");
 const withAuth = require("../../utils/auth");
 
-// API routes for posts
-// Get all posts
+//--------------------------API Routes for Posts
+//-------------Get All Posts:
 router.get("/", async (req, res) => {
   try {
     const postData = await Post.findAll({
@@ -15,25 +16,23 @@ router.get("/", async (req, res) => {
   }
 });
 
-// Get a single post by id
+//-------------Get a Single Post by ID:
 router.get("/:id", async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id, {
       include: [{ model: User, attributes: ["name"] }],
     });
-
     if (!postData) {
       res.status(404).json({ message: "No post found with that id!" });
       return;
     }
-
     res.status(200).json(postData);
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-// Create a new post (with authentication)
+//-------------Create a New Post (with Authentication)
 router.post("/", withAuth, async (req, res) => {
   try {
     const newPost = await Post.create({
@@ -46,7 +45,7 @@ router.post("/", withAuth, async (req, res) => {
   }
 });
 
-// Update a post by id (with authentication)
+//-------------Update a Post by ID (with Authentication)
 router.put("/:id", withAuth, async (req, res) => {
   try {
     const postData = await Post.update(req.body, {
@@ -54,19 +53,17 @@ router.put("/:id", withAuth, async (req, res) => {
         id: req.params.id,
       },
     });
-
     if (!postData) {
       res.status(404).json({ message: "Sorry, no post found with this id? Please try again" });
       return;
     }
-
     res.status(200).json(postData);
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-// Delete a post by id (with authentication)
+//-------------Delete a Post by ID (with Authentication)
 router.delete("/:id", withAuth, async (req, res) => {
   try {
     console.log(`Attempting to delete post with id: ${req.params.id}`);
@@ -75,12 +72,10 @@ router.delete("/:id", withAuth, async (req, res) => {
         id: req.params.id,
       },
     });
-
     if (!postData) {
       res.status(404).json({ message: "Sorry, no post found with this id? Please try again" });
       return;
     }
-
     console.log(`Deleted post with id: ${req.params.id}`);
     res.status(200).json(postData);
   } catch (err) {
@@ -90,4 +85,5 @@ router.delete("/:id", withAuth, async (req, res) => {
   }
 });
 
+//-------------Exporting postRoutes file:
 module.exports = router;
