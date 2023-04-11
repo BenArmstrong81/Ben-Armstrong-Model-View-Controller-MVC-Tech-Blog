@@ -11,8 +11,12 @@ nav{
     font: var(--font-family);
     background: rgb(47,85,120);
     background: linear-gradient(180deg, rgba(47,85,120,1) 0%, rgba(47,85,120,1) 35%, rgba(130,129,127,1) 100%);
+    font-size: 30px;
 }
 
+.navbar-brand{
+  font-size: 30px;
+}
 
 .login-signup {
     display: flex;
@@ -142,4 +146,5 @@ nav{
     color: var(--text-colour-white);
     background: rgb(47,85,120);
     background: linear-gradient(0deg, rgba(47,85,120,1) 0%, rgba(47,85,120,1) 35%, rgba(130,129,127,1) 100%);
+    font-size: 20px;
 }
