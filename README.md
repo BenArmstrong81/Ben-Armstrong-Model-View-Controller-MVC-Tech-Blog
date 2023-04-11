@@ -52,12 +52,6 @@ WHEN I am idle on the site for more than a set time
 THEN I am able to view comments but I am prompted to log in again before I can add, update, or delete comments
 ```
 
-## Mock-Up
-
-The following animation demonstrates the application functionality:
-
-![Animation cycles through signing into the app, clicking on buttons, and updating blog posts.](./Assets/14-mvc-homework-demo-01.gif) 
-
 ## Getting Started
 
 Your application’s folder structure must follow the Model-View-Controller paradigm. You’ll need to use the [express-handlebars](https://www.npmjs.com/package/express-handlebars) package to implement Handlebars.js for your Views, use the [MySQL2](https://www.npmjs.com/package/mysql2) and [Sequelize](https://www.npmjs.com/package/sequelize) packages to connect to a MySQL database for your Models, and create an Express.js API for your Controllers.
@@ -85,14 +79,6 @@ This Challenge is graded based on the following criteria:
 * Repository contains multiple descriptive commit messages.
 * Repository contains quality readme file with description, screenshot, and link to deployed application.
 
-## Review
-
-You are required to submit BOTH of the following for review:
-
-* The URL of the functional, deployed application.
-
-* The URL of the GitHub repository, with a unique name and a readme describing the project.
-
 # Installation
 N/A - Depolyed onto live Website using Heroku.
 
@@ -102,23 +88,42 @@ You can use and view this application via the following: https://obscure-springs
 
 The following image's shows the deployed application:
 
-![First LogIn/Sign Up screen.](./assets/MetroMadness_Screen1.png)
-![Second screen with layout.](./assets/MetroMadness_Screen2.png)
-![Second screen showing working application.](./assets/MetroMadness_Screen2_ShowingWork.png)
+LogIn Screen:
+![LogIn Screen.](./public/images/Ben-Armstrong-Model-View-Controller-MVC-Tech-Blog_LogInScreen.png)
+<br>
+
+SignUp Screen:
+![SignUp Screen.](./public/images/Ben-Armstrong-Model-View-Controller-MVC-Tech-Blog_SignUpScreen.png)
+<br>
+
+Home Page:
+![Homepage.](./public/images/Ben-Armstrong-Model-View-Controller-MVC-Tech-Blog_HomeScreen.png)
+<br>
+
+Dashboard:
+![Dashboard.](./public/images/Ben-Armstrong-Model-View-Controller-MVC-Tech-Blog_Dashboard.png)
+<br>
+
+Edit or Delete Post:
+![Edit or Delete Post Screen.](./public/images/Ben-Armstrong-Model-View-Controller-MVC-Tech-Blog_DeleteOrEditPost.png)
+<br>
+
+Edit or Delete Comment:
+![Edit or Delete Comment.](./public/images/Ben-Armstrong-Model-View-Controller-MVC-Tech-Blog_EditOrDeleteComment.png)
 
 # Credits
 * Ben Armstrong https://github.com/BenArmstrong81 <br>
 
 *With special thanks to The University of Adelaide Full Stack Web Development Class.*
 
-## What I Learned
+# What I Learned
 Building on the first third of the course, the past 6 weeks we have learnt the following; Node.js, Object-Oriented Programming (OOP), Express.js, SQL, Object-Relational Mapping (ORM), Heruku, Model View Controller (MVC) and much much more!!
 
 Using the above skills I created this whole project from scratch including; HTML (using Handlebars,js), CSS, JavaScript, Node.js, Exress.js, SQL, GitHub, Heroku, Boostrap and README files. 
   
 I feel rather proud, after only 13 weeks of coding and to be able to complete such a task is greatfully satisfying.
 
-## Made With
+# Made With
 
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
